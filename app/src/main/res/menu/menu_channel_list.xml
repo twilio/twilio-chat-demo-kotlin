@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/filter_channels"
+        android:icon="@drawable/ic_filter_list"
+        android:title="@string/filter_channels"
+        app:showAsAction="collapseActionView|always"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+
+    <item android:id="@+id/show_channel_add"
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_channel"
+        app:showAsAction="always" />
+
+</menu>

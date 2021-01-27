@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="channel"
+            type="com.twilio.chat.app.data.models.ChannelListViewItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/channelItem"
+        android:background="@drawable/bg_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/channelLock"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_lock"
+            android:visibility="@{channel.locked ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/channelInfoHolder"
+            app:layout_constraintEnd_toStartOf="@id/channelInfoHolder"
+            app:layout_constraintBottom_toBottomOf="@id/channelInfoHolder"
+            app:tint="@color/icon_tint" />
+
+        <LinearLayout
+            android:id="@+id/channelInfoHolder"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_goneMarginStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/channelLock"
+            app:layout_constraintEnd_toStartOf="@id/channelUpdateTime"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/channelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@{channel.name}"
+                style="@style/TextViewTitle"
+                tools:text="Channel Name"/>
+
+            <TextView
+                android:id="@+id/channelInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/channel_info(channel.memberCount, channel.dateCreated)}"
+                style="@style/TextViewSubtitle"
+                tools:text="14 Members | Created 19-03-2019"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/channelUpdateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{channel.dateUpdated}"
+            style="@style/TextViewTime"
+            tools:text="3:45PM"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/channelMute"
+            app:layout_constraintBottom_toTopOf="@id/channelUnreadCount"
+            app:layout_constraintStart_toEndOf="@id/channelInfoHolder"/>
+
+        <TextView
+            android:id="@+id/channelUnreadCount"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/bg_channel_counter"
+            android:gravity="center"
+            android:text="@{channel.messageCount}"
+            style="@style/TextViewCounter"
+            tools:text="99+"
+            app:layout_constraintTop_toBottomOf="@id/channelUpdateTime"
+            app:layout_constraintEnd_toEndOf="@id/channelUpdateTime"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/channelMute"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:src="@{channel.isMuted ? @drawable/ic_volume_off : @drawable/ic_volume_on}"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@id/channelIndicatorHolder"
+            app:layout_constraintTop_toTopOf="@id/channelInfoHolder"
+            app:layout_constraintStart_toEndOf="@id/channelUpdateTime"
+            app:layout_constraintBottom_toBottomOf="@id/channelInfoHolder"
+            app:tint="@color/icon_tint" />
+
+        <FrameLayout
+            android:id="@+id/channelIndicatorHolder"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/channelInfoHolder"
+            app:layout_constraintStart_toEndOf="@id/channelMute"
+            app:layout_constraintBottom_toBottomOf="@id/channelInfoHolder">
+
+            <ImageView
+                android:id="@+id/channelArrow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrow_right"
+                android:visibility="@{channel.loading ? View.GONE : View.VISIBLE}"
+                app:tint="@color/icon_tint" />
+
+            <ProgressBar
+                android:id="@+id/channelJoiningSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{channel.loading ? View.VISIBLE : View.GONE}"/>
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/divider_channels"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

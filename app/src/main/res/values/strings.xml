@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name">Chat Demo</string>
+    <string name="activity_title_channels_list">Channels</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+
+    <!-- Credentials -->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="retry_sign_in">Retry</string>
+
+    <!-- Login Errors -->
+    <string name="sign_in_error">Sign in failed. Try again</string>
+    <string name="token_error">Could not get token. Error occurred</string>
+
+    <!-- Splash status text -->
+    <string name="splash_connecting">Connecting</string>
+    <string name="splash_connection_error">Connection error</string>
+
+    <!-- Splash error text -->
+    <string name="splash_invalid_credentials">Invalid credentials. Please check login and password and try again</string>
+
+    <!-- Channels list -->
+    <string name="channel_info">%1$s Members | Created %2$s</string>
+    <string name="txt_tab_my_channels">My Channels</string>
+    <string name="txt_tab_public_channels">All Channels</string>
+    <string name="err_failed_to_create_channel">Failed to create channel</string>
+    <string name="err_failed_to_join_channel">Failed to join channel</string>
+    <string name="err_failed_to_remove_channel">Failed to remove channel</string>
+    <string name="err_failed_to_leave_channel">Failed to leave channel</string>
+    <string name="err_failed_to_fetch_user_channels">Failed to fetch user channels</string>
+    <string name="err_failed_to_fetch_public_channels">Failed to fetch public channels</string>
+    <string name="err_failed_to_mute_channels">Failed to mute channel</string>
+    <string name="err_failed_to_unmute_channel">Failed to unmute channel</string>
+    <string name="err_failed_to_update_reaction">Failed to update reaction</string>
+    <string name="err_failed_to_rename_channel">Failed to rename channel</string>
+    <string name="err_failed_to_get_channel">Failed to get channel</string>
+    <string name="err_failed_to_fetch_members">Failed to fetch members</string>
+    <string name="err_failed_to_add_member">Failed to add member</string>
+    <string name="err_failed_to_remove_member">Failed to remove member</string>
+    <string name="err_failed_to_update_user">Failed to update user</string>
+    <string name="err_channel_generic_error">Request failed, please try again later</string>
+    <string name="filter_channels">Filter Channels</string>
+
+    <!-- Channel add dialog -->
+    <string name="hint_channel_name">Channel name</string>
+    <string name="add_channel">Add Channel</string>
+    <string name="remove_channel">Remove Channel</string>
+    <string name="leave_channel">Leave Channel</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove_channel_title">Are you sure you wish to remove this channel?</string>
+    <string name="channel_filter_hint">Filter Channels</string>
+    <string-array name="channel_type">
+        <item>ALL</item>
+        <item>MY</item>
+    </string-array>
+
+    <!-- Message list -->
+    <string name="enter_message">Enter message…</string>
+
+    <plurals name="typing_indicator">
+        <item quantity="zero">%s</item>
+        <item quantity="one">%s is typing…</item>
+        <item quantity="other">%s are typing…</item>
+    </plurals>
+    <string name="typing_indicator_overflow">and others</string>
+
+    <!-- Channel details -->
+    <string name="details_title">Channel Details</string>
+    <string name="details_created_by">Created by: %1$s</string>
+    <string name="details_created_date">Date: %1$s</string>
+    <string name="details_private_channel">Private channel</string>
+    <string name="details_public_channel">Public channel</string>
+    <string name="details_actions">Actions</string>
+    <string name="details_add_member">Add Member</string>
+    <string name="details_member_list">Member List</string>
+    <string name="details_rename_channel">Rename Channel</string>
+    <string name="details_mute_channel">Mute Channel</string>
+    <string name="details_unmute_channel">Unmute Channel</string>
+    <string name="details_delete_channel">Delete Channel</string>
+
+    <!-- Add member dialog -->
+    <string name="hint_add_member">Member identity</string>
+    <string name="member_added_message">Member %s added</string>
+
+    <!-- Reactions -->
+    <string name="reaction_heart">&#x2764;</string>
+    <string name="reaction_laugh">&#x1F602;</string>
+    <string name="reaction_sad">&#x1F622;</string>
+    <string name="reaction_thumbs_up">&#x1F44D;</string>
+    <string name="reaction_thumbs_down">&#x1F44E;</string>
+
+    <!-- Media messages -->
+    <string name="attachment_icon_description">Attachment icon</string>
+    <string name="button_download_attachment">Download</string>
+    <string name="button_open_attachment">Open</string>
+    <string name="attachment_file_name_unknown">Unknown</string>
+    <string name="attachment_choose_image">Choose Image</string>
+    <string name="attachment_take_picture">Take Picture</string>
+    <string name="err_failed_to_capture_image">Failed to capture image</string>
+    <string name="err_failed_to_send_media">Failed to send media</string>
+    <string name="err_failed_to_resend_media">Failed to re-send media</string>
+    <string name="err_failed_to_download_media">Failed to download media</string>
+
+    <!-- Member list -->
+    <string name="member_filter_hint">Filter Members</string>
+    <string name="member_title">Member List</string>
+    <string name="member_details_status">Status</string>
+    <string name="member_details_remove">Remove</string>
+    <string name="member_online">Online</string>
+    <string name="member_offline">Away</string>
+    <string name="user_profile_friendly_name">Friendly name</string>
+    <string name="user_profile_identity">Identity</string>
+    <string name="user_profile_update">Update</string>
+
+    <!-- Notifications -->
+    <string name="notification_new_message">Twilio: New Message</string>
+    <string name="notification_added_to_channel">Twilio: Added to Channel</string>
+    <string name="notification_invited_to_channel">Twilio: Invited to Channel</string>
+    <string name="notification_removed_from_channel">Twilio: Removed from Channel</string>
+    <string name="notification_generic">Twilio Notification</string>
+    <string name="crash_in_tm_client">TMClient.cpp</string>
+    <string name="crash_in_chat_client">ChatClient.cpp</string>
+    <string name="crash_in_channel_list_activity">ChannelListActivity.kt</string>
+    <string name="simulate_crash_in">Simulate crash in:</string>
+
+</resources>
