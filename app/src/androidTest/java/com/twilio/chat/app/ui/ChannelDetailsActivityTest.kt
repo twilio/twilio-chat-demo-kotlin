@@ -136,7 +136,7 @@ class ChannelDetailsActivityTest {
         UiThreadStatement.runOnUiThread {
             channelDetailsViewModel.onChannelRemoved.value = Unit
         }
-        assert(activityRule.activity.isDestroyed)
+        assert(activityRule.activity.isFinishing)
     }
 
     @Test
