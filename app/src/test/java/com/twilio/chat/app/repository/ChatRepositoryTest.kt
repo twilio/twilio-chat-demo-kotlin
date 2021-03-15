@@ -88,6 +88,7 @@ class ChatRepositoryTest {
         coEvery { chatClientWrapper.getChatClient() } returns chatClient
 
         chatRepository = ChatRepositoryImpl(chatClientWrapper, localCacheProvider, coroutineTestRule.testDispatcherProvider)
+        chatRepository.subscribeToChatClientEvents()
     }
 
     @Test
