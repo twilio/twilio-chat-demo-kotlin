@@ -19,7 +19,7 @@ import java.net.URL
 
 class ChatClientWrapper {
 
-    private val deferredClient = CompletableDeferred<ChatClient>()
+    private var deferredClient = CompletableDeferred<ChatClient>()
 
     private lateinit var identity: String
     private lateinit var password: String
@@ -51,6 +51,7 @@ class ChatClientWrapper {
 
     suspend fun shutdown() {
         getChatClient().shutdown()
+        deferredClient = CompletableDeferred()
     }
 
     /**

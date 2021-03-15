@@ -50,6 +50,8 @@ interface ChatRepository {
     )
     fun simulateCrash(where: CrashIn)
     fun clear()
+    fun subscribeToChatClientEvents()
+    fun unsubscribeFromChatClientEvents()
 }
 
 class ChatRepositoryImpl(
@@ -59,6 +61,30 @@ class ChatRepositoryImpl(
 ) : ChatRepository {
 
     private val repositoryScope = CoroutineScope(dispatchers.io() + SupervisorJob())
+
+    private val clientListener = createClientListener(
+            onChannelDeleted = { channel ->
+                launch {
+                    Timber.d("Channel deleted $channel")
+                    localCache.channelsDao().delete(channel.sid)
+                }
+            },
+            onChannelUpdated = { channel, _ ->
+                launch{ insertOrUpdateChannel(channel.sid) }
+            },
+            onChannelJoined = { channel ->
+                launch { insertOrUpdateChannel(channel.sid) }
+            },
+            onChannelAdded = { channel ->
+                launch {
+                    insertOrUpdateChannel(channel.sid)
+                }
+            },
+            onChannelSynchronizationChange = { channel ->
+                launch { insertOrUpdateChannel(channel.sid) }
+            }
+    )
+
     private val channelListener = createChannelListener(
         onTypingStarted = { channel, member ->
             Timber.d("${member.identity} started typing in ${channel.friendlyName}")
@@ -104,13 +130,6 @@ class ChatRepositoryImpl(
             addMessage(message)
         }
     )
-
-    init {
-        Timber.d("Init")
-        launch {
-            subscribeToChatClientEvents()
-        }
-    }
 
     private fun launch(block: suspend CoroutineScope.() -> Unit) = repositoryScope.launch(
         context = CoroutineExceptionHandler { _, e -> Timber.e(e, "Coroutine failed ${e.localizedMessage}") },
@@ -367,30 +386,18 @@ class ChatRepositoryImpl(
         }
     }
 
-    private suspend fun subscribeToChatClientEvents() {
-        Timber.d("Channel listener added")
-        chatClientWrapper.getChatClient().addListener(
-            onChannelDeleted = { channel ->
-                launch {
-                    Timber.d("Channel deleted $channel")
-                    localCache.channelsDao().delete(channel.sid)
-                }
-            },
-            onChannelUpdated = { channel, _ ->
-                launch{ insertOrUpdateChannel(channel.sid) }
-            },
-            onChannelJoined = { channel ->
-                launch { insertOrUpdateChannel(channel.sid) }
-            },
-            onChannelAdded = { channel ->
-                launch {
-                    insertOrUpdateChannel(channel.sid)
-                }
-            },
-            onChannelSynchronizationChange = { channel ->
-                launch { insertOrUpdateChannel(channel.sid) }
-            }
-        )
+    override fun subscribeToChatClientEvents() {
+        launch {
+            Timber.d("Client listener added")
+            chatClientWrapper.getChatClient().addListener(clientListener)
+        }
+    }
+
+    override fun unsubscribeFromChatClientEvents() {
+        launch {
+            Timber.d("Client listener removed")
+            chatClientWrapper.getChatClient().removeListener(clientListener)
+        }
     }
 
     private suspend fun insertOrUpdateChannel(channelSid: String) {

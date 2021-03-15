@@ -59,6 +59,7 @@ class LoginManagerImpl(
         val response = chatClient.create(applicationContext, identity, password)
         if (response is Client) {
             credentialStorage.storeCredentials(identity, password)
+            chatRepository.subscribeToChatClientEvents()
             registerForFcm()
         }
         return response
@@ -81,6 +82,7 @@ class LoginManagerImpl(
     override suspend fun signOut() {
         unregisterFromFcm()
         clearCredentials()
+        chatRepository.unsubscribeFromChatClientEvents()
         chatRepository.clear()
         chatClient.shutdown()
     }
