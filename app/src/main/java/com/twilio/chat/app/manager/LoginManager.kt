@@ -74,6 +74,7 @@ class LoginManagerImpl(
         if (response is Error) {
             handleError(response.error)
         } else {
+            chatRepository.subscribeToChatClientEvents()
             registerForFcm()
         }
         return response
