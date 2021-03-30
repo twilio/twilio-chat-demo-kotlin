@@ -1,7 +1,7 @@
 package com.twilio.chat.app
 
-const val VALID_IDENTITY = "user08"
-const val VALID_PASSWORD = "8zuF9U43Q\$Ex2ub\$"
+const val VALID_IDENTITY = BuildConfig.TOKEN_SERVICE_IDENTITY
+const val VALID_PASSWORD = BuildConfig.TOKEN_SERVICE_PASSWORD
 
 const val INVALID_IDENTITY = "s"
 const val INVALID_PASSWORD = "s"
