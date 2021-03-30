@@ -59,11 +59,14 @@ commands:
           command: |
             echo "$GOOGLE_SERVICES_JSON" | base64 --decode >> app/google-services.json
 
-  setup_token_service_url:
+  setup_token_service:
     steps:
       - run:
           name: Setup Token Service Url
-          command: echo "ACCESS_TOKEN_SERVICE_URL=$ACCESS_TOKEN_SERVICE_URL" >> gradle.properties
+          command: |
+            echo "ACCESS_TOKEN_SERVICE_URL=$ACCESS_TOKEN_SERVICE_URL" >> gradle.properties
+            echo "ACCESS_TOKEN_SERVICE_IDENTITY=$ACCESS_TOKEN_SERVICE_IDENTITY" >> gradle.properties
+            echo "ACCESS_TOKEN_SERVICE_PASSWORD=$ACCESS_TOKEN_SERVICE_PASSWORD" >> gradle.properties
 
 jobs:
   build:
@@ -74,7 +77,7 @@ jobs:
       - checkout
       - generate_signing_config
       - generate_google_service_json
-      - setup_token_service_url
+      - setup_token_service
       - download_dependencies
       - run: 
           name: Assemble APKs
