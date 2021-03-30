@@ -15,6 +15,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "ACCESS_TOKEN_SERVICE_URL", "\"$ACCESS_TOKEN_SERVICE_URL\""
+        buildConfigField "String", "ACCESS_TOKEN_SERVICE_IDENTITY", "\"${project.findProperty('ACCESS_TOKEN_SERVICE_IDENTITY') ?: ''}\""
+        buildConfigField "String", "ACCESS_TOKEN_SERVICE_PASSWORD", "\"${project.findProperty('ACCESS_TOKEN_SERVICE_PASSWORD') ?: ''}\""
     }
 
     buildTypes {
@@ -22,7 +26,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             testProguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-test-rules.pro'
-            buildConfigField "String", "ACCESS_TOKEN_SERVICE_URL", "\"$ACCESS_TOKEN_SERVICE_URL\""
 
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled true
@@ -37,7 +40,6 @@ android {
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
-            buildConfigField "String", "ACCESS_TOKEN_SERVICE_URL", "\"$ACCESS_TOKEN_SERVICE_URL\""
 
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled true
