@@ -2,11 +2,11 @@ package com.twilio.chat.app
 
 import android.app.Application
 import android.content.Intent
-import android.util.Log
 import androidx.emoji.bundled.BundledEmojiCompatConfig
 import androidx.emoji.text.EmojiCompat
 import com.google.firebase.FirebaseApp
 import com.twilio.chat.ChatClient
+import com.twilio.chat.ChatClient.LogLevel
 import com.twilio.chat.app.common.LineNumberDebugTree
 import com.twilio.chat.app.data.ChatClientWrapper
 import com.twilio.chat.app.data.localCache.LocalCacheProvider
@@ -19,7 +19,7 @@ class ChatApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
-            ChatClient.setLogLevel(Log.VERBOSE)
+            ChatClient.setLogLevel(LogLevel.DEBUG)
             Timber.plant(LineNumberDebugTree("Demo"))
         }
 
