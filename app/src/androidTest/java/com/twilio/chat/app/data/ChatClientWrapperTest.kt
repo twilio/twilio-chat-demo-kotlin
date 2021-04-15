@@ -5,11 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.twilio.chat.app.INVALID_IDENTITY
 import com.twilio.chat.app.INVALID_PASSWORD
-import com.twilio.chat.app.VALID_IDENTITY
-import com.twilio.chat.app.VALID_PASSWORD
-import com.twilio.chat.app.data.models.Client
 import com.twilio.chat.app.data.models.Error
-import com.twilio.chat.app.data.models.Response
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -28,12 +24,6 @@ class ChatClientWrapperTest {
 
         ChatClientWrapper.recreateInstance()
         chatClientWrapper = ChatClientWrapper.INSTANCE
-    }
-
-    @Test
-    fun create_withValidCredentials_returnsClient() = runBlocking {
-        val response: Response = chatClientWrapper.create(context.applicationContext, VALID_IDENTITY, VALID_PASSWORD)
-        assertTrue(response is Client)
     }
 
     @Test
