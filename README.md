@@ -1,3 +1,12 @@
+# This repository is for an obsoleted product
+
+This code is using Twilio Chat, which we intend to sunset on July 25, 2022. The new great product to be used instead is Twilio Conversations.
+The Conversations Demo Application is available in [twilio-conversations-demo-kotlin][1]. It is an example of good app architecture and demonstrates best practices in implementing Twilio-based Conversations.
+
+This repository remains available in case you want to improve your existing Chat Application. For new applications it is highly recommended to start with [twilio-conversations-demo-kotlin][1].
+
+[1]: https://github.com/twilio/twilio-conversations-demo-kotlin/
+
 # Chat Demo Application Overview
 
 This demo app SDK version: ![](https://img.shields.io/badge/SDK%20version-6.2.0-blue.svg)
